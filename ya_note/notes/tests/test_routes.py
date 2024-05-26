@@ -117,5 +117,4 @@ class TestRoutes(TestCase):
             with self.subTest():
                 redirect_url = f'{self.GET_URL_USERS_LOGIN}?next={url}'
                 response = self.client.get(url)
-                self.assertRedirects(response, redirect_url)
-                
+                self.assertRedirects(response, redirec_url)
