@@ -5,7 +5,7 @@ from django.test import Client, TestCase
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 
-from notes.model import Note
+from Ya_Note.ya_note.notes.models import Note
 
 
 # Получение объекта пользователя

@@ -2,8 +2,8 @@ from http import HTTPStatus
 
 from django.test import Client, TestCase
 from django.urls import reverse
-from notes.forms import WARNING
-from notes.models import Note
+from Ya_Note.ya_note.notes.forms import WARNING
+from Ya_Note.ya_note.notes.models import Note
 from .test_routes import User
 from pytils.translit import slugify
 
