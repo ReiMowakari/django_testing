@@ -80,7 +80,7 @@ def test_user_cant_delete_comment_of_another_user(
     response = admin_client.delete(get_url_comment_delete)
     assert response.status_code == HTTPStatus.NOT_FOUND
     comments_count = Comment.objects.count()
-    assert comments_count == 1
+    assert comments_count == count_before_request
 
 
 @pytest.mark.django_db

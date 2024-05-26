@@ -40,7 +40,8 @@ class TestLogicNote(TestCase):
         cls.GET_URL_NOTES_ADD = reverse('notes:add')
         cls.GET_URL_USERS_LOGIN = reverse('users:login')
         cls.GET_URL_NOTES_EDIT = reverse('notes:edit', args=(cls.note.slug,))
-        cls.GET_URL_NOTES_DELETE = reverse('notes:delete', args=(cls.note.slug,))
+        cls.GET_URL_NOTES_DELETE = reverse(
+            'notes:delete', args=(cls.note.slug,))
         cls.GET_URL_NOTES_SUCCESS = reverse('notes:success')
 
     def test_user_can_create_note(self):
@@ -59,8 +60,10 @@ class TestLogicNote(TestCase):
 
     def test_anonymous_user_cant_create_note(self):
         """Анонимный пользователь не может создать заметку."""
-        response = self.client.post(self.GET_URL_NOTES_ADD, data=self.form_data)
-        expected_url = f'{self.GET_URL_USERS_LOGIN}?next={self.GET_URL_NOTES_ADD}'
+        response = self.client.post(
+            self.GET_URL_NOTES_ADD, data=self.form_data)
+        expected_url = f'''{self.GET_URL_USERS_LOGIN}
+        ?next={self.GET_URL_NOTES_ADD}'''
         self.assertRedirects(response, expected_url)
         self.assertEqual(Note.objects.count(), self.NOTES_BEFORE_REQUEST)
 

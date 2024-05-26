@@ -8,7 +8,7 @@ from django.urls import reverse
 from notes.model import Note
 
 
-#Получение объекта пользователя.
+# Получение объекта пользователя
 User = get_user_model()
 
 
@@ -40,9 +40,12 @@ class TestRoutes(TestCase):
         cls.GET_URL_NOTES_LIST = reverse('notes:list')
         cls.GET_URL_NOTES_ADD = reverse('notes:add')
         cls.GET_URL_NOTES_SUCCESS = reverse('notes:success')
-        cls.GET_URL_NOTES_DETAIL = reverse('notes:detail', args=(cls.note.slug,))
-        cls.GET_URL_NOTES_EDIT = reverse('notes:edit', args=(cls.note.slug,))
-        cls.GET_URL_NOTES_DELETE = reverse('notes:delete', args=(cls.note.slug,))
+        cls.GET_URL_NOTES_DETAIL = reverse(
+            'notes:detail', args=(cls.note.slug,))
+        cls.GET_URL_NOTES_EDIT = reverse(
+            'notes:edit', args=(cls.note.slug,))
+        cls.GET_URL_NOTES_DELETE = reverse(
+            'notes:delete', args=(cls.note.slug,))
 
     def test_pages_availability(self):
         """
