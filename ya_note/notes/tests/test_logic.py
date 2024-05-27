@@ -62,8 +62,8 @@ class TestLogicNote(TestCase):
         """Анонимный пользователь не может создать заметку."""
         response = self.client.post(
             self.GET_URL_NOTES_ADD, data=self.form_data)
-        expected_url = f'''{self.GET_URL_USERS_LOGIN}
-        ?next={self.GET_URL_NOTES_ADD}'''
+        expected_url = (f'{self.GET_URL_USERS_LOGIN}'
+                        f'?next={self.GET_URL_NOTES_ADD}')
         self.assertRedirects(response, expected_url)
         self.assertEqual(Note.objects.count(), self.NOTES_BEFORE_REQUEST)
 
