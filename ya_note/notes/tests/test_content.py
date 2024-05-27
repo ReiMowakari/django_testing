@@ -1,7 +1,7 @@
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from Ya_Note.ya_note.notes.models import Note
+from ..models import Note
 
 from .test_routes import User
 
