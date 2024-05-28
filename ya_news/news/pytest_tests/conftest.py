@@ -1,10 +1,13 @@
 import random
+import pytest
+
 from datetime import datetime, timedelta
 
-import pytest
 from django.conf import settings
 from django.urls import reverse
 from django.utils import timezone
+from django.test.client import Client
+
 from news.models import Comment, News
 
 COMMENT_TEXT = 'Текст комментария'
@@ -15,7 +18,6 @@ def author(django_user_model):
     """Фикстура автора."""
     return django_user_model.objects.create(username='Автор')
 
-
 @pytest.fixture
 def non_author(django_user_model):
     """Фикстура не автора."""
@@ -23,15 +25,17 @@ def non_author(django_user_model):
 
 
 @pytest.fixture
-def author_client(author, client):
+def author_client(author):
     """Фикстура залогининного автора."""
+    # Создаём новый экземпляр клиента, чтобы не менять глобальный
+    client = Client()
     client.force_login(author)
     return client
 
-
 @pytest.fixture
-def non_author_client(non_author, client):
+def non_author_client(non_author):
     """Фикстура залогининного не автора."""
+    client = Client()
     client.force_login(non_author)
     return client
 
@@ -105,8 +109,13 @@ def get_url_comment_edit(comment):
     """Получения юрл для страницы редактирования комментария."""
     return reverse('news:edit', args=(comment.id,))
 
-
 @pytest.fixture
 def get_url_comment_delete(comment):
     """Получения юрл для страницы удаления комментария."""
     return reverse('news:delete', args=(comment.id,))
+
+
+@pytest.fixture(autouse=True)
+def enable_db_access_for_all_tests(db):
+    """Фикстура для автоматического доступа к БД."""
+    pass
