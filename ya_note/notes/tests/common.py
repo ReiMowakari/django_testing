@@ -1,8 +1,11 @@
 from django.test import Client, TestCase
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
 from notes.models import Note
-from .test_routes import User
+
+# Получение объекта пользователя
+User = get_user_model()
 
 
 class CommonTest(TestCase):

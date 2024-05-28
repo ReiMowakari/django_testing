@@ -1,12 +1,6 @@
 from http import HTTPStatus
 
-from django.contrib.auth import get_user_model
-
 from .common import CommonTest
-
-
-# Получение объекта пользователя
-User = get_user_model()
 
 
 class TestRoutes(CommonTest):
