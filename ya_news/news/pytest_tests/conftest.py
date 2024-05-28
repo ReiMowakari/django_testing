@@ -18,6 +18,7 @@ def author(django_user_model):
     """Фикстура автора."""
     return django_user_model.objects.create(username='Автор')
 
+
 @pytest.fixture
 def non_author(django_user_model):
     """Фикстура не автора."""
@@ -31,6 +32,7 @@ def author_client(author):
     client = Client()
     client.force_login(author)
     return client
+
 
 @pytest.fixture
 def non_author_client(non_author):
@@ -108,6 +110,7 @@ def get_url_news_detail(news):
 def get_url_comment_edit(comment):
     """Получения юрл для страницы редактирования комментария."""
     return reverse('news:edit', args=(comment.id,))
+
 
 @pytest.fixture
 def get_url_comment_delete(comment):

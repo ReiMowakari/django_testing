@@ -27,14 +27,13 @@ def test_pages_availability_for_anonymous_user(client, name):
 
 def test_detail_page_availability(get_url_news_detail, client):
     """Страница отдельной новости доступна анонимному пользователю."""
-
     response = client.get(get_url_news_detail)
     assert response.status_code == HTTPStatus.OK
 
 
 @pytest.mark.parametrize(
     'parametrized_client, expected_status',
-    #Список фикстур авторизованного автора и неавторизованного.
+    # Список фикстур авторизованного автора и неавторизованного
     (
         (pytest.lazy_fixture('author_client'), HTTPStatus.OK),
         (pytest.lazy_fixture('non_author_client'), HTTPStatus.NOT_FOUND),
@@ -42,7 +41,7 @@ def test_detail_page_availability(get_url_news_detail, client):
 )
 @pytest.mark.parametrize(
     'get_url',
-    #Список фикстур получения юрл для редактирования и удаления комментария.
+    # Список фикстур получения юрл для редактирования и удаления комментария
     (
         pytest.lazy_fixture('get_url_comment_edit'),
         pytest.lazy_fixture('get_url_comment_delete'),
