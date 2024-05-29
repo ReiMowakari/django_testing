@@ -25,6 +25,6 @@ class TestContent(CommonTest):
         """На страницы создания и редактирования заметки передаются формы."""
         urls = (self.GET_URL_NOTES_ADD, self.GET_URL_NOTES_EDIT)
         for url in urls:
-            with self.subTest(url):
+            with self.subTest(url=url):
                 response = self.author_logged.get(url)
                 self.assertIn('form', response.context)

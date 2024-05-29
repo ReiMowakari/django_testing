@@ -18,7 +18,7 @@ class TestRoutes(CommonTest):
             self.GET_URL_USERS_SIGNUP,
         )
         for url in urls:
-            with self.subTest():
+            with self.subTest(url=url):
                 response = self.client.get(url)
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
@@ -35,7 +35,7 @@ class TestRoutes(CommonTest):
             self.GET_URL_NOTES_SUCCESS,
         )
         for url in urls:
-            with self.subTest():
+            with self.subTest(url=url):
                 response = self.reader_logged.get(url)
                 self.assertEqual(response.status_code, HTTPStatus.OK)
 
@@ -55,7 +55,7 @@ class TestRoutes(CommonTest):
                     self.GET_URL_NOTES_EDIT,
                     self.GET_URL_NOTES_DELETE
             ):
-                with self.subTest():
+                with self.subTest(client=client, status=status, url=url):
                     response = client.get(url)
                     self.assertEqual(response.status_code, status)
 
@@ -73,7 +73,7 @@ class TestRoutes(CommonTest):
             self.GET_URL_NOTES_LIST,
         )
         for url in urls:
-            with self.subTest():
+            with self.subTest(url=url):
                 redirect_url = f'{self.GET_URL_USERS_LOGIN}?next={url}'
                 response = self.client.get(url)
                 self.assertRedirects(response, redirect_url)
